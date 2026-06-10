@@ -1,4 +1,4 @@
 package com.example.lane.entities;
 
-public class Country {
+public class Test {
 }
