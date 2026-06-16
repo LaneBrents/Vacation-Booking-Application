@@ -19,13 +19,13 @@ public class Division {
     private Long id;
 
     @Column(name = "division")
-    private String division;
+    private String divisionName;
 
     @Column(name = "create_date")
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_update")
-    private Date lastUpdate;
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

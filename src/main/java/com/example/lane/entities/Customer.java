@@ -3,7 +3,6 @@ package com.example.lane.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -45,10 +44,10 @@ public class Customer {
     private String phone;
 
     @Column(name = "create_date")
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_update")
-    private Date lastUpdate;
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "division_id")
