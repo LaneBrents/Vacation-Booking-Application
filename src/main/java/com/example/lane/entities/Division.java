@@ -1,10 +1,12 @@
 package com.example.lane.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +21,7 @@ public class Division {
     private Long id;
 
     @Column(name = "division")
-    private String divisionName;
+    private String division_name;
 
     @Column(name = "create_date")
     private Date create_date;
@@ -27,10 +29,17 @@ public class Division {
     @Column(name = "last_update")
     private Date last_update;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Country_ID", nullable = false, insertable = false, updatable = false)
     private Country country;
 
-    @OneToMany(mappedBy = "division")
-    private Set<Customer> customers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
+    private Set<Customer> customers = new HashSet<>();
+
+    @Column(name = "Country_ID")
+    private Long country_id;
+    public void setCountry(Country country){
+        setCountry_id(country.getId());
+        this.country = country;
+    }
 }

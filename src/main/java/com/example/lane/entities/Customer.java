@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -37,7 +38,7 @@ public class Customer {
 
     @NotBlank(message = "Postal code is required")
     @Column(name = "postal_code")
-    private String postalCode;
+    private String postal_code;
 
     @NotBlank(message = "Phone number is required")
     @Column(name = "phone")
@@ -53,6 +54,6 @@ public class Customer {
     @JoinColumn(name = "division_id")
     private Division division;
 
-    @OneToMany(mappedBy = "customer")
-    private Set<Cart> carts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<Cart> carts = new HashSet<>();
 }
