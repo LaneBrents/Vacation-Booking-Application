@@ -3,6 +3,8 @@ package com.example.lane.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Set;
@@ -18,16 +20,6 @@ public class CartItem {
     @Column(name = "cart_item_id")
     private Long id;
 
-    @Column(name = "create_date")
-    private Date createDate;
-
-    @Column(name = "last_update")
-    private Date lastUpdate;
-
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-
     @ManyToOne
     @JoinColumn(name = "vacation_id")
     private Vacation vacation;
@@ -39,4 +31,16 @@ public class CartItem {
             inverseJoinColumns = @JoinColumn(name = "excursion_id")
     )
     private Set<Excursion> excursions;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private Date create_date;
+
+    @UpdateTimestamp
+    @Column(name = "last_update")
+    private Date last_update;
 }

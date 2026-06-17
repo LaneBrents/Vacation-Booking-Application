@@ -11,15 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:4200")
 public class CheckoutController {
     private CheckoutService checkoutService;
-
     @Autowired
     public CheckoutController(CheckoutService checkoutService) {
         this.checkoutService = checkoutService;
     }
-
     @PostMapping("/purchase")
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
+        if (purchase.getCart() == null || purchase.getCartItems() == null || purchase.getCartItems().isEmpty()) {
+            System.out.println("Order Failed");
+            return null;
+        }
+        PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+        return purchaseResponse;
 
-        return checkoutService.placeOrder(purchase);
     }
+
+
 }

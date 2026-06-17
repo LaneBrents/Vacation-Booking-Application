@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 import java.util.Date;
@@ -44,9 +46,11 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+    @CreationTimestamp
     @Column(name = "create_date")
     private Date create_date;
 
+    @UpdateTimestamp
     @Column(name = "last_update")
     private Date last_update;
 
